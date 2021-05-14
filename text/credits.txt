@@ -1,3 +1,4 @@
 Game written with love, and Python, by Andrew "baller" Boyer
 
-Find more on andrewsboyer.com
+Find more on https://andrewsboyer.com
+
