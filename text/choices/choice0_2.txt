@@ -1,1 +1,1 @@
-choice0_2.txt
+Help the dwarf fight the ogre(1) or run away(0)
