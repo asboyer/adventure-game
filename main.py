@@ -90,8 +90,9 @@ while playing:
     while alive and not win:
         choice = choose(level, choice)
         alive = check_alive(level, choice)
+        win = check_win(level, choice)
         if alive:
-            score += 1.5 * level
+            score += int(1.5 * level)
             level += 1
 
     played += 1
