@@ -18,7 +18,13 @@ def choose(level, choice):
 
     return get_num(fr(f'description{str(choice)}_{str(level)}') + " ", start=0, finish=1, integer=True)
 
-check_alive():
+def check_alive(level, choice):
+    if level == 1 and choice == 1:
+        delay_print(fr(f'death{str(choice)}_{str(level)}'))
+        return False
+    else:
+        return True
+
 
 # read a file of highscores
 # if no highscores, make new file
@@ -39,14 +45,24 @@ while playing:
 
     while alive and not win:
         choice = choose(level)
-        level += 1
-        check_alive()
+        alive = check_alive()
+        if alive:
+            score += 1.5 * level
+            level += 1
 
     if win:
+        delay_print("YOU WIN!")
         # winner
     else:
+        delay_print("GAME OVER")
         # death
-    # choice
+    if score > highscore:
+        highscore = score
+        print("NEW HIGH SCORE!")
+        # enter initials
+
+    # play again?
+    break
 
 
 
