@@ -3,6 +3,13 @@ from art import text2art
 from os import path
 
 speed = 0
+# TO DO: read a file of highscores
+#       if no highscores, make new file
+highscore = 0
+highlevel = 0
+playing = True
+played = 0
+
 
 def starter(played):
     if played == 0:
@@ -58,7 +65,7 @@ def intro(played):
     input("\nPress enter to begin\n")
     clear()
 
-def scorecard(score, highscore, level, played, highlevel):
+def scorecard(score, level, played):
     print(f'Level reached: {str(level)}')
     print(f'Highest level: {str(highlevel)}')
     print(f'Games played: {str(played)}')
@@ -67,13 +74,6 @@ def scorecard(score, highscore, level, played, highlevel):
 
 def credits():
     delay_print(fr('credits'), speed)
-
-# TO DO: read a file of highscores
-#       if no highscores, make new file
-highscore = 0
-highlevel = 0
-playing = True
-played = 0
 
 while playing:
 
@@ -110,7 +110,7 @@ while playing:
         highlevel = level
         print("NEW HIGHEST LEVEL")
 
-    scorecard(score, highscore, level, played, highlevel)
+    scorecard(score, level, played)
 
     if not play_again():
         break
