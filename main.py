@@ -47,6 +47,26 @@ def check_win(level, choice):
     else:
         return False
 
+def check_bonus(level):
+    bonus_file = f"bonus/bonus_{str(level)}"
+
+    if path.exists(f'text/{bonus_file}.txt'):
+
+        delay_print("bonus question!".upper())
+
+        file = open(f"text/{bonus_file}.txt", "r")
+        lines = file.readlines()
+        answer = input(lines[0]).lower().strip()
+        answers = lines[1].strip().split(" ")
+
+        if answer in answers:
+            return int(lines[2])
+        else:
+            return 0
+    
+    else:
+        return 0  
+
 def play_again():
     while True:
         choice = input("Play again? ")
@@ -89,6 +109,7 @@ while playing:
 
     while alive and not win:
         choice = choose(level, choice)
+        score += check_bonus(level)
         alive = check_alive(level, choice)
         win = check_win(level, choice)
         if alive:
@@ -98,20 +119,20 @@ while playing:
     played += 1
 
     if win:
-        delay_print("\nYOU WIN!\n", speed)
+        delay_print("\nyou win!\n".upper(), speed)
         credits()
 
     else:
-        delay_print("\nGAME OVER\n", speed)
+        delay_print("\ngame over\n".upper(), speed)
 
     if score > highscore:
         highscore = score
-        print("NEW HIGH SCORE!")
+        print("new high score".upper())
         # enter initials
 
     if level > highlevel:
         highlevel = level
-        print("NEW HIGHEST LEVEL")
+        print("new highest level".upper())
 
     scorecard(score, level, played)
 
