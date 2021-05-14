@@ -30,18 +30,18 @@ def choose(level, choice):
     return get_num(fr(f'choices/choice{str(choice)}_{str(level)}'), start=0, finish=1, integer=True)
 
 def check_alive(level, choice):
-    death_file = f"text/deaths/death{str(choice)}_{str(level)}"
+    death_file = f"deaths/death{str(choice)}_{str(level)}"
 
-    if path.exists(death_file):
+    if path.exists(f'text/{death_file}.txt'):
         delay_print(fr(death_file), speed)
         return False
     else:
         return True
 
 def check_win(level, choice):
-    win_file = f"text/wins/win{str(choice)}_{str(level)}"
+    win_file = f"wins/win{str(choice)}_{str(level)}"
 
-    if path.exists(win_file):
+    if path.exists(f'text/{win_file}.txt'):
         delay_print(fr(win_file), speed)
         return True
     else:
@@ -66,11 +66,13 @@ def intro(played):
     clear()
 
 def scorecard(score, level, played):
+    print('\n_____________________________')
     print(f'Level reached: {str(level)}')
     print(f'Highest level: {str(highlevel)}')
     print(f'Games played: {str(played)}')
     print(f'Score: {str(score)}')
     print(f'Highscore: {str(highscore)}')
+    print('_____________________________\n')
 
 def credits():
     delay_print(fr('credits'), speed)
@@ -95,11 +97,11 @@ while playing:
     played += 1
 
     if win:
-        delay_print("\nYOU WIN!", speed)
+        delay_print("\nYOU WIN!\n", speed)
         credits()
 
     else:
-        delay_print("\nGAME OVER", speed)
+        delay_print("\nGAME OVER\n", speed)
 
     if score > highscore:
         highscore = score
