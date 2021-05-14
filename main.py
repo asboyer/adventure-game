@@ -4,6 +4,8 @@ def starter(played):
     if played == 0:
         # set the scene
         delay_print(fr('starter'))
+        print("\n")
+        
     else:
         pass
         # you know the drill, run it back
@@ -13,10 +15,9 @@ def fr(name):
     return file.read()
 
 def choose(level, choice):
-    delay_print(fr(f'choice{str(choice)}_{str(level)}'))
-    print(f)
+    delay_print(fr(f'description{str(choice)}_{str(level)}'))
 
-    return get_num(fr(f'description{str(choice)}_{str(level)}') + " ", start=0, finish=1, integer=True)
+    return get_num(fr(f'choice{str(choice)}_{str(level)}'), start=0, finish=1, integer=True)
 
 def check_alive(level, choice):
     if level == 1 and choice == 1:
@@ -44,8 +45,8 @@ while playing:
     starter(played)
 
     while alive and not win:
-        choice = choose(level)
-        alive = check_alive()
+        choice = choose(level, choice)
+        alive = check_alive(level, choice)
         if alive:
             score += 1.5 * level
             level += 1
