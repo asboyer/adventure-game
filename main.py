@@ -25,8 +25,9 @@ def fr(name):
     return file.read()
 
 def choose(level, choice):
+    print('\n')
     delay_print(fr(f'descriptions/description{str(choice)}_{str(level)}'), speed)
-
+    print('\n')
     return get_num(fr(f'choices/choice{str(choice)}_{str(level)}'), start=0, finish=1, integer=True)
 
 def check_alive(level, choice):
@@ -52,16 +53,22 @@ def check_bonus(level):
 
     if path.exists(f'text/{bonus_file}.txt'):
 
-        delay_print("bonus question!".upper())
+        clear()
+        delay_print("bonus question!".upper(), speed)
+        print('\n')
 
         file = open(f"text/{bonus_file}.txt", "r")
         lines = file.readlines()
-        answer = input(lines[0]).lower().strip()
-        answers = lines[1].strip().split(" ")
+        answer = input(lines[0].strip() + " ").lower().strip()
+        answers = lines[1].strip().lower().split(" ")
 
-        if answer in answers:
+        if answer in answers or answer == lines[1].strip().lower():
+            delay_print(f'Correct! You receive {lines[2]} points!', speed)
+            clear()
             return int(lines[2])
         else:
+            delay_print('Incorrect! You missed out on some bonus points!', speed)
+            clear()
             return 0
     
     else:
@@ -100,6 +107,7 @@ def credits():
 while playing:
 
     choice = ""
+    choices = ""
     score = 0
     alive = True
     win = False
@@ -108,10 +116,11 @@ while playing:
     intro(played)
 
     while alive and not win:
-        choice = choose(level, choice)
         score += check_bonus(level)
-        alive = check_alive(level, choice)
-        win = check_win(level, choice)
+        choice = choose(level, choices)
+        choices += str(choice)
+        alive = check_alive(level, choices)
+        win = check_win(level, choices)
         if alive:
             score += int(1.5 * level)
             level += 1

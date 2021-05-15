@@ -1,3 +1,1 @@
-You lie and tell the dwarf you 
-
-"Great, I am always happy to greet young travelers"
+Follow the dwarf(1) or tell him you lied to him(0)
