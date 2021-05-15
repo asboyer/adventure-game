@@ -2,7 +2,7 @@ from boyer import *
 from art import text2art
 from os import path
 
-speed = 0
+speed = 4
 # TO DO: read a file of highscores
 #       if no highscores, make new file
 highscore = 0
@@ -10,13 +10,11 @@ highlevel = 0
 playing = True
 played = 0
 
-
 def starter(played):
     if played == 0:
         # set the scene
         delay_print(fr('intro'), speed)
         print("\n")
-        
     else:
         pass
 
@@ -69,8 +67,7 @@ def check_bonus(level):
         else:
             delay_print('Incorrect! You missed out on some bonus points!', speed)
             clear()
-            return 0
-    
+            return 0   
     else:
         return 0  
 
