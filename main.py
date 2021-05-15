@@ -26,12 +26,12 @@ def fr(name):
 
 def choose(level, choice):
     print('\n')
-    delay_print(fr(f'descriptions/description{str(choice)}_{str(level)}'), speed)
+    delay_print(fr(f'descriptions/description{str(level)}_{str(choice)}'), speed)
     print('\n')
-    return get_num(fr(f'choices/choice{str(choice)}_{str(level)}'), start=0, finish=1, integer=True)
+    return get_num(fr(f'choices/choice{str(level)}_{str(choice)}'), start=0, finish=1, integer=True)
 
 def check_alive(level, choice):
-    death_file = f"deaths/death{str(choice)}_{str(level)}"
+    death_file = f"deaths/death{str(level)}_{str(choice)}"
 
     if path.exists(f'text/{death_file}.txt'):
         delay_print(fr(death_file), speed)
@@ -40,7 +40,7 @@ def check_alive(level, choice):
         return True
 
 def check_win(level, choice):
-    win_file = f"wins/win{str(choice)}_{str(level)}"
+    win_file = f"wins/win{str(level)}_{str(choice)}"
 
     if path.exists(f'text/{win_file}.txt'):
         delay_print(fr(win_file), speed)
