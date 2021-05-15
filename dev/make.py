@@ -16,5 +16,3 @@ for i in nums:
         filename = f'../text/{text}s/{text}{level}_{str(st)}.txt'
         if not path.exists(filename):
             file = open(filename, "w")
-
-
