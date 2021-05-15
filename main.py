@@ -118,14 +118,17 @@ while playing:
         choices += str(choice)
         alive = check_alive(level, choices)
         win = check_win(level, choices)
-        if alive:
+        if alive and not win:
             score += int(1.5 * level)
             level += 1
+        if win:
+            score += int(1.5 * level)
 
     played += 1
 
     if win:
         delay_print("\nyou win!\n".upper(), speed)
+        score += 1000 * level
         credits()
 
     else:
