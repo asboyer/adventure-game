@@ -13,7 +13,7 @@ for i in nums:
     for x in i:
         st += str(x)
     for text in types:
-        filename = f'../text/{text}s/{text}{st}_{str(level)}.txt'
+        filename = f'../text/{text}s/{text}{level}_{str(st)}.txt'
         if not path.exists(filename):
             file = open(filename, "w")
 
