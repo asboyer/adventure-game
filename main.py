@@ -113,6 +113,10 @@ while playing:
     intro(played)
 
     while alive and not win:
+        if level < highlevel:
+            speed = 0
+        else:
+            speed = 4
         score += check_bonus(level)
         choice = choose(level, choices)
         choices += str(choice)
