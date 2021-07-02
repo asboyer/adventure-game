@@ -2,7 +2,9 @@ from boyer import *
 from art import text2art
 from os import path
 
-speed = 4
+game_speed = 4
+
+speed = game_speed
 # TO DO: read a file of highscores
 #       if no highscores, make new file
 highscore = 0
@@ -23,7 +25,6 @@ def fr(name):
     return file.read()
 
 def choose(level, choice):
-    print('\n')
     delay_print(fr(f'descriptions/description{str(level)}_{str(choice)}'), speed)
     print('\n')
     return get_num(fr(f'choices/choice{str(level)}_{str(choice)}'), start=0, finish=1, integer=True)
@@ -47,6 +48,9 @@ def check_win(level, choice):
         return False
 
 def check_bonus(level):
+
+    speed = game_speed
+
     bonus_file = f"bonus/bonus_{str(level)}"
 
     if path.exists(f'text/{bonus_file}.txt'):
@@ -101,6 +105,14 @@ def scorecard(score, level, played):
 def credits():
     delay_print(fr('credits'), speed)
 
+def check_if_played(choices, stages_played):
+    for option in stages_played:
+        if option == choices:
+            return True
+    return False
+
+stages_played = []
+
 while playing:
 
     choice = ""
@@ -113,13 +125,21 @@ while playing:
     intro(played)
 
     while alive and not win:
-        if level < highlevel:
+        stages_played.append(choices)
+        print(stages_played)
+        print(choices)
+        if check_if_played(choices, stages_played) and played != 0:
             speed = 0
         else:
-            speed = 4
+            speed = game_speed
         score += check_bonus(level)
         choice = choose(level, choices)
         choices += str(choice)
+        clear()
+        if check_if_played(choices, stages_played) and played != 0:
+            speed = 0
+        else:
+            speed = game_speed
         alive = check_alive(level, choices)
         win = check_win(level, choices)
         if alive and not win:

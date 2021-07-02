@@ -1,0 +1,2 @@
+- add "skip" option for cut-scene like descriptions
+- store global variables in database file
